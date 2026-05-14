@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
-
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ── Design tokens ─────────────────────────────────────── */
 :root {
   --brand-gold:      #C9A84C;
   --brand-gold-soft: #E8C96B;
@@ -25,7 +23,6 @@
   --shadow-glow:     0 0 0 3px rgba(201,168,76,0.2);
 }
 
-/* ── Reset & base ──────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
@@ -40,7 +37,6 @@ body {
   min-height: 100vh;
 }
 
-/* ── Input component ───────────────────────────────────── */
 @layer components {
   .input {
     width: 100%;
@@ -93,7 +89,6 @@ body {
   }
 }
 
-/* ── Page shell ────────────────────────────────────────── */
 .page-bg {
   background: var(--bg-base);
   background-image:
@@ -102,7 +97,6 @@ body {
   min-height: 100vh;
 }
 
-/* ── Header ────────────────────────────────────────────── */
 .site-header {
   position: sticky;
   top: 0;
@@ -169,14 +163,12 @@ body {
   color: var(--brand-gold);
 }
 
-/* ── Main content ──────────────────────────────────────── */
 .page-main {
   max-width: 780px;
   margin: 0 auto;
   padding: 52px 24px 80px;
 }
 
-/* ── Hero section ──────────────────────────────────────── */
 .hero {
   text-align: center;
   margin-bottom: 44px;
@@ -221,7 +213,6 @@ body {
   margin: 0 auto;
 }
 
-/* ── Card ──────────────────────────────────────────────── */
 .card {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
@@ -230,7 +221,6 @@ body {
   overflow: hidden;
 }
 
-/* ── Form sections ─────────────────────────────────────── */
 .form-section {
   padding: 28px 28px 0;
 }
@@ -289,7 +279,6 @@ body {
   flex-shrink: 0;
 }
 
-/* ── Optional section toggle ───────────────────────────── */
 .optional-section {
   padding: 0 28px 28px;
   margin-top: 20px;
@@ -315,7 +304,6 @@ body {
   color: var(--brand-gold);
 }
 
-/* ── Error ─────────────────────────────────────────────── */
 .error-banner {
   margin: 0 28px 20px;
   display: flex;
@@ -329,7 +317,6 @@ body {
   color: #F08080;
 }
 
-/* ── Submit button ─────────────────────────────────────── */
 .submit-wrap {
   padding: 0 28px 28px;
 }
@@ -369,7 +356,6 @@ body {
   cursor: not-allowed;
 }
 
-/* ── Loading hint ──────────────────────────────────────── */
 .loading-hint {
   margin-top: 20px;
   background: var(--bg-surface);
@@ -416,7 +402,6 @@ body {
   50%       { opacity: 1;   transform: scale(1.2); }
 }
 
-/* ── Result view ───────────────────────────────────────── */
 .result-success {
   display: flex;
   align-items: center;
@@ -483,7 +468,6 @@ body {
   border-color: rgba(201,168,76,0.5);
 }
 
-/* ── Result content card ───────────────────────────────── */
 .result-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
@@ -517,7 +501,6 @@ body {
   padding: 28px;
 }
 
-/* ── Prose inside result ───────────────────────────────── */
 .result-prose h1 {
   font-family: 'DM Serif Display', serif;
   font-size: 1.45rem;
@@ -586,7 +569,6 @@ body {
   color: var(--text-primary);
 }
 
-/* ── Responsive ────────────────────────────────────────── */
 @media (max-width: 640px) {
   .page-main { padding: 32px 16px 60px; }
   .form-section { padding: 20px 20px 0; }

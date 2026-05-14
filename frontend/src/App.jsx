@@ -5,29 +5,19 @@ import JobFormModal from './components/JobFormModel';
 import JobForm      from './components/JobForm';
 import JobResult    from './components/JobResult';
 
-/**
- * App state machine
- * idle → loading → result   (modal closes, full page swap to JobResult)
- *              ↘ error → idle (modal stays open for retry)
- * result → idle              (via onReset — full page swap back to LandingPage)
- */
-
 export default function App() {
-  // ── State ──────────────────────────────────────────────────
-  const [appState,  setAppState]  = useState('idle');   // 'idle' | 'loading' | 'result' | 'error'
+  const [appState,  setAppState]  = useState('idle');   
   const [result,    setResult]    = useState('');
   const [error,     setError]     = useState('');
   const [formData,  setFormData]  = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
-  // ── Scroll to top whenever we swap pages ───────────────────
   useEffect(() => {
     if (appState === 'result' || appState === 'idle') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [appState]);
 
-  // ── Handlers ───────────────────────────────────────────────
   const openModal  = useCallback(() => setModalOpen(true),  []);
   const closeModal = useCallback(() => {
     if (appState !== 'loading') setModalOpen(false);
@@ -52,37 +42,32 @@ export default function App() {
       }
 
       setResult(json.result || json.content || '');
-      setAppState('result');   // ← triggers page swap to JobResult
+      setAppState('result');   
       setModalOpen(false);
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.');
       setAppState('error');
-      // Modal stays open so the user sees the SweetAlert and can retry
     }
   }, []);
 
   const handleReset = useCallback(() => {
-    setAppState('idle');       // ← triggers page swap back to LandingPage
+    setAppState('idle');       
     setResult('');
     setError('');
     setFormData(null);
   }, []);
 
-  // ── Derived ────────────────────────────────────────────────
   const isLoading   = appState === 'loading';
   const showResult  = appState === 'result' && !!result;
   const formVisible = appState === 'idle' || appState === 'loading' || appState === 'error';
 
-  // ── Render ─────────────────────────────────────────────────
   return (
     <div style={{ minHeight: '100vh', background: '#090c10' }}>
 
-      {/* ── Sticky header (always present) ────────────────── */}
+      { }
       <Header onOpenForm={showResult ? undefined : openModal} />
 
-      {/* ══════════════════════════════════════════════════════
-          PAGE: Landing  (idle / loading / error)
-      ══════════════════════════════════════════════════════ */}
+      { }
       {!showResult && (
         <div
           key="landing-page"
@@ -92,15 +77,13 @@ export default function App() {
         </div>
       )}
 
-      {/* ══════════════════════════════════════════════════════
-          PAGE: Result  (result state)
-      ══════════════════════════════════════════════════════ */}
+      { }
       {showResult && (
         <div
           key="result-page"
           style={{ animation: 'page-in 0.45s cubic-bezier(0.34,1.1,0.64,1) both' }}
         >
-          {/* Page header row */}
+          { }
           <div style={{
             maxWidth:      '860px',
             margin:        '0 auto',
@@ -111,7 +94,7 @@ export default function App() {
             gap:           '16px',
             flexWrap:      'wrap',
           }}>
-            {/* Back button */}
+            { }
             <button
               onClick={handleReset}
               style={{
@@ -142,7 +125,7 @@ export default function App() {
               ← Back to home
             </button>
 
-            {/* Generate another */}
+            { }
             <button
               onClick={openModal}
               style={{
@@ -172,7 +155,7 @@ export default function App() {
             </button>
           </div>
 
-          {/* Divider */}
+          { }
           <div style={{
             maxWidth:  '860px',
             margin:    '24px auto 0',
@@ -196,7 +179,7 @@ export default function App() {
             <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.06)' }} />
           </div>
 
-          {/* Result card */}
+          { }
           <section style={{
             maxWidth: '860px',
             margin:   '24px auto 0',
@@ -211,7 +194,7 @@ export default function App() {
         </div>
       )}
 
-      {/* ── Job Form Modal (available on both pages) ───────── */}
+      { }
       <JobFormModal
         isOpen={modalOpen}
         onClose={closeModal}
