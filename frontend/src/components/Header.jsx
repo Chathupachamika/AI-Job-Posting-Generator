@@ -1,5 +1,3 @@
-// components/Header.jsx
-
 import { useState, useEffect } from 'react';
 import logo from '../assets/logo.png';
 
@@ -8,7 +6,6 @@ export default function Header({ onOpenForm }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeId,   setActiveId]   = useState('');
 
-  /* Scroll → shrink header + track active section */
   useEffect(() => {
     const SECTION_IDS = ['how-it-works', 'features', 'team'];
 
@@ -26,14 +23,12 @@ export default function Header({ onOpenForm }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* Close drawer on desktop resize */
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 768) setMobileOpen(false); };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  /* Smooth-scroll to section — accounts for sticky header height */
   const scrollTo = (e, href) => {
     e.preventDefault();
     setMobileOpen(false);
@@ -58,7 +53,7 @@ export default function Header({ onOpenForm }) {
       <header className={`hdr ${scrolled ? 'hdr--scrolled' : ''}`}>
         <div className="hdr__inner">
 
-          {/* ── Logo ─────────────────────────────────────── */}
+          { }
           <a
             href="/"
             className="hdr__brand"
@@ -77,7 +72,7 @@ export default function Header({ onOpenForm }) {
             </div>
           </a>
 
-          {/* ── Desktop nav ──────────────────────────────── */}
+          { }
           <nav className="hdr__nav" aria-label="Primary">
             {NAV_LINKS.map(({ label, href }) => (
               <a
@@ -91,7 +86,7 @@ export default function Header({ onOpenForm }) {
             ))}
           </nav>
 
-          {/* ── Desktop right actions ────────────────────── */}
+          { }
           <div className="hdr__actions">
             <div className="hdr__divider" />
             <span className="hdr__beta-pill">Beta</span>
@@ -107,7 +102,7 @@ export default function Header({ onOpenForm }) {
             )}
           </div>
 
-          {/* ── Mobile hamburger ─────────────────────────── */}
+          { }
           <button
             className={`hdr__burger${mobileOpen ? ' hdr__burger--open' : ''}`}
             onClick={() => setMobileOpen(o => !o)}
@@ -118,7 +113,7 @@ export default function Header({ onOpenForm }) {
           </button>
         </div>
 
-        {/* ── Mobile drawer ────────────────────────────────── */}
+        { }
         <div className={`hdr__drawer${mobileOpen ? ' hdr__drawer--open' : ''}`}>
           <nav className="hdr__drawer-nav">
             {NAV_LINKS.map(({ label, href }) => (
@@ -176,7 +171,6 @@ const CSS = `
   gap: 8px;
 }
 
-/* Brand */
 .hdr__brand {
   display: flex; align-items: center; gap: 11px;
   text-decoration: none; flex-shrink: 0;
@@ -214,7 +208,6 @@ const CSS = `
   font-size: 0.67rem; font-weight: 500; color: #4a6080; letter-spacing: 0.02em;
 }
 
-/* Desktop nav */
 .hdr__nav { display: flex; align-items: center; gap: 2px; margin-left: 28px; }
 .hdr__nav-link {
   position: relative;
@@ -234,7 +227,6 @@ const CSS = `
   background: #c9a84c;
 }
 
-/* Right actions */
 .hdr__actions { margin-left: auto; display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
 .hdr__divider { width: 1px; height: 22px; background: rgba(255,255,255,0.08); flex-shrink: 0; }
 .hdr__beta-pill {
@@ -261,7 +253,6 @@ const CSS = `
 }
 .hdr__cta:active { transform: translateY(0); opacity: 1; }
 
-/* Hamburger */
 .hdr__burger {
   display: none; flex-direction: column; justify-content: center;
   gap: 5px; width: 38px; height: 38px; padding: 8px; margin-left: auto;
@@ -282,7 +273,6 @@ const CSS = `
 .hdr__burger--open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hdr__burger--open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); width: 100%; }
 
-/* Mobile drawer */
 .hdr__drawer {
   overflow: hidden; max-height: 0;
   transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1);
@@ -313,7 +303,6 @@ const CSS = `
 }
 .hdr__drawer-cta:hover { opacity: 0.88; }
 
-/* Responsive */
 @media (max-width: 860px)  { .hdr__nav { display: none; } }
 @media (max-width: 640px)  {
   .hdr__nav { display: none; }
