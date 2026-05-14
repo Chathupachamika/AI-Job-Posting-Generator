@@ -2,19 +2,9 @@ import { useEffect, useRef } from 'react';
 import { X, Loader2 } from 'lucide-react';
 import logo from '../assets/logo.png';
 
-/**
- * JobFormModal
- * ─────────────────────────────────────────────────────────────
- * Props
- *   isOpen    boolean   – mount / unmount the overlay
- *   onClose   () => void
- *   lockClose boolean   – when true, disables Escape + backdrop + X (during loading)
- *   children  ReactNode – the <JobForm /> component
- */
 export default function JobFormModal({ isOpen, onClose, lockClose = false, children }) {
   const overlayRef = useRef(null);
 
-  /* Escape to close (unless locked) */
   useEffect(() => {
     const handler = (e) => {
       if (e.key === 'Escape' && !lockClose) onClose();
@@ -23,13 +13,11 @@ export default function JobFormModal({ isOpen, onClose, lockClose = false, child
     return () => document.removeEventListener('keydown', handler);
   }, [onClose, lockClose]);
 
-  /* Lock body scroll while open */
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
-  /* Backdrop click (unless locked) */
   const handleOverlayClick = (e) => {
     if (e.target === overlayRef.current && !lockClose) onClose();
   };
@@ -50,7 +38,7 @@ export default function JobFormModal({ isOpen, onClose, lockClose = false, child
         animation: 'overlay-in 0.18s ease both',
       }}
     >
-      {/* Panel */}
+      { }
       <div
         role="dialog"
         aria-modal="true"
@@ -67,7 +55,7 @@ export default function JobFormModal({ isOpen, onClose, lockClose = false, child
           animation: 'panel-in 0.28s cubic-bezier(0.34,1.22,0.64,1) both',
         }}
       >
-        {/* ── Sticky modal top-bar ──────────────────────────── */}
+        { }
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '16px 20px',
@@ -78,10 +66,10 @@ export default function JobFormModal({ isOpen, onClose, lockClose = false, child
           borderRadius: '22px 22px 0 0',
         }}>
 
-          {/* Logo + title */}
+          { }
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
 
-            {/* Logo mark — same style as header */}
+            { }
             <div style={{
               position: 'relative',
               width: '38px', height: '38px', borderRadius: '10px',
@@ -97,7 +85,7 @@ export default function JobFormModal({ isOpen, onClose, lockClose = false, child
                 alt="JobCraft AI"
                 style={{ width: '26px', height: '26px', objectFit: 'contain' }}
               />
-              {/* Loading spinner ring overlay */}
+              { }
               {lockClose && (
                 <div style={{
                   position: 'absolute', inset: 0,
@@ -145,7 +133,7 @@ export default function JobFormModal({ isOpen, onClose, lockClose = false, child
             </div>
           </div>
 
-          {/* Close button */}
+          { }
           <button
             onClick={() => { if (!lockClose) onClose(); }}
             aria-label="Close modal"
@@ -175,7 +163,7 @@ export default function JobFormModal({ isOpen, onClose, lockClose = false, child
           </button>
         </div>
 
-        {/* ── Form content ─────────────────────────────────── */}
+        { }
         <div>{children}</div>
       </div>
 
