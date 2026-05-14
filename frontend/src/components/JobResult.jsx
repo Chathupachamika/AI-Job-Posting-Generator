@@ -1,5 +1,3 @@
-// components/JobResult.jsx
-
 import { useState, useEffect } from 'react';
 import jsPDF from 'jspdf';
 import Swal from 'sweetalert2';
@@ -8,7 +6,6 @@ import {
   Building2, MapPin, Briefcase, Users, DollarSign,
 } from 'lucide-react';
 
-// ── Shared SweetAlert2 base config matching navy/gold palette ─────────────────
 const swalBase = {
   customClass: {
     popup:         'swal-popup',
@@ -21,7 +18,6 @@ const swalBase = {
   buttonsStyling: false,
 };
 
-// ── Toast (top-right, auto-dismiss) ───────────────────────────────────────────
 const Toast = Swal.mixin({
   ...swalBase,
   toast:             true,
@@ -35,7 +31,6 @@ const Toast = Swal.mixin({
   },
 });
 
-// ── Extract structured metadata from the first paragraph ──────────────────────
 function extractMeta(text) {
   const meta = {};
   const patterns = {
@@ -52,7 +47,6 @@ function extractMeta(text) {
   return meta;
 }
 
-// ── Strip the metadata blob from the body text ────────────────────────────────
 function stripMetaLine(text) {
   return text
     .replace(/\*?\*?Company:\*?\*?\s*[^\n]+/gi, '')
@@ -85,7 +79,6 @@ export default function JobResult({ result, jobTitle, onReset }) {
   const meta      = extractMeta(result);
   const cleanBody = stripMetaLine(result);
 
-  // ── Show success toast once on mount (replaces the inline banner) ────────────
   useEffect(() => {
     Swal.fire({
       ...swalBase,
@@ -98,7 +91,6 @@ export default function JobResult({ result, jobTitle, onReset }) {
     });
   }, []);
 
-  // ── Copy ────────────────────────────────────────────────────────────────────
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(result);
@@ -124,7 +116,6 @@ export default function JobResult({ result, jobTitle, onReset }) {
     }
   };
 
-  // ── PDF ─────────────────────────────────────────────────────────────────────
   const handleDownload = async () => {
     const { isConfirmed } = await Swal.fire({
       ...swalBase,
@@ -161,7 +152,6 @@ export default function JobResult({ result, jobTitle, onReset }) {
     }
   };
 
-  // ── Reset confirmation ──────────────────────────────────────────────────────
   const handleReset = async () => {
     const { isConfirmed } = await Swal.fire({
       ...swalBase,
@@ -184,7 +174,7 @@ export default function JobResult({ result, jobTitle, onReset }) {
       <style>{SWAL_STYLES}</style>
 
       <div>
-        {/* Action bar */}
+        { }
         <div className="action-bar">
           <button onClick={handleCopy} className="btn-secondary">
             {copied
@@ -201,16 +191,16 @@ export default function JobResult({ result, jobTitle, onReset }) {
           </button>
         </div>
 
-        {/* Result card */}
+        { }
         <div className="result-card">
 
-          {/* Card header */}
+          { }
           <div className="result-card-header">
             <div className="result-card-dot" />
             <div className="result-card-title">{jobTitle}</div>
           </div>
 
-          {/* Metadata chips grid */}
+          { }
           {metaEntries.length > 0 && (
             <div style={{
               display:             'grid',
@@ -273,7 +263,6 @@ export default function JobResult({ result, jobTitle, onReset }) {
   );
 }
 
-// ── PDF generator ─────────────────────────────────────────────────────────────
 function _generatePDF(jobTitle, cleanBody, meta) {
   const doc      = new jsPDF({ unit: 'pt', format: 'a4' });
   const pageW    = doc.internal.pageSize.getWidth();
@@ -291,7 +280,6 @@ function _generatePDF(jobTitle, cleanBody, meta) {
 
   let y = 0;
 
-  // Header band
   doc.setFillColor(...navy);
   doc.rect(0, 0, pageW, 130, 'F');
   doc.setFillColor(...goldSoft);
@@ -435,7 +423,6 @@ function _generatePDF(jobTitle, cleanBody, meta) {
     y = 48;
   };
 
-  // Page 1 footer
   doc.setDrawColor(...divClr);
   doc.setLineWidth(0.5);
   doc.line(margin, pageH - 30, pageW - margin, pageH - 30);
@@ -513,7 +500,6 @@ function _generatePDF(jobTitle, cleanBody, meta) {
 
   flushList();
 
-  // Last page footer band
   doc.setFillColor(...navy);
   doc.rect(0, pageH - 44, pageW, 44, 'F');
   doc.setFillColor(...goldSoft);
@@ -536,7 +522,6 @@ function _generatePDF(jobTitle, cleanBody, meta) {
   doc.save(`${jobTitle.toLowerCase().replace(/\s+/g, '_')}_job_posting.pdf`);
 }
 
-// ── Markdown renderer ─────────────────────────────────────────────────────────
 function renderMarkdown(text) {
   return text
     .replace(/&/g, '&amp;')
@@ -552,7 +537,6 @@ function renderMarkdown(text) {
     .replace(/<p>\s*<\/p>/g, '');
 }
 
-// ── SweetAlert2 theme — navy/gold palette ─────────────────────────────────────
 const SWAL_STYLES = `
   .swal-popup {
     background: #0c1430 !important;
@@ -576,7 +560,6 @@ const SWAL_STYLES = `
     line-height: 1.6 !important;
   }
 
-  /* Confirm button — gold */
   .swal-btn-confirm {
     background: linear-gradient(135deg, #c9a84c, #b8903a) !important;
     color: #0c1430 !important;
@@ -592,7 +575,6 @@ const SWAL_STYLES = `
   .swal-btn-confirm:hover { opacity: 0.88 !important; transform: translateY(-1px) !important; }
   .swal-btn-confirm:focus { box-shadow: 0 0 0 3px rgba(201,168,76,0.35) !important; outline: none !important; }
 
-  /* Cancel button — subtle navy outline */
   .swal-btn-cancel {
     background: transparent !important;
     color: #7888a8 !important;
@@ -608,7 +590,6 @@ const SWAL_STYLES = `
   .swal-btn-cancel:hover { border-color: #c9a84c !important; color: #c9a84c !important; }
   .swal-btn-cancel:focus { box-shadow: 0 0 0 3px rgba(201,168,76,0.2) !important; outline: none !important; }
 
-  /* Icon overrides */
   .swal2-icon.swal2-success { border-color: #c9a84c !important; color: #c9a84c !important; }
   .swal2-icon.swal2-success [class^='swal2-success-line'] { background-color: #c9a84c !important; }
   .swal2-icon.swal2-success .swal2-success-ring { border-color: rgba(201,168,76,0.25) !important; }
@@ -618,7 +599,6 @@ const SWAL_STYLES = `
   .swal2-icon.swal2-error    { border-color: #d45a5a !important; color: #d45a5a !important; }
   .swal2-icon.swal2-error [class^='swal2-x-mark-line'] { background-color: #d45a5a !important; }
 
-  /* Toast */
   .swal2-toast.swal-popup {
     padding: 0.7rem 1rem !important;
     border-radius: 10px !important;
@@ -630,7 +610,6 @@ const SWAL_STYLES = `
   .swal2-toast .swal-title { font-size: 0.9rem !important; margin-bottom: 0 !important; }
   .swal2-toast .swal2-icon { width: 1.6em !important; height: 1.6em !important; margin: 0 !important; }
 
-  /* Timer & backdrop */
   .swal2-timer-progress-bar { background: #c9a84c !important; opacity: 0.7 !important; }
   .swal2-backdrop-show { background: rgba(0,0,0,0.65) !important; backdrop-filter: blur(3px) !important; }
 `;
