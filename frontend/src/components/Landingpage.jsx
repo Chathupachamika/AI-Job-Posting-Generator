@@ -118,7 +118,7 @@ function Testimonial({ quote, author, role, stars }) {
 }
 
 const FEATURES = [
-  { icon: Zap,       accent: '#3b82f6', title: 'Instant Generation',    body: 'Get a polished, structured job description in under 10 seconds — powered by Llama 3 on Groq's ultra-fast inference.' },
+  { icon: Zap,       accent: '#3b82f6', title: 'Instant Generation',    body: "Get a polished, structured job description in under 10 seconds — powered by Llama 3 on Groq's ultra-fast inference." },
   { icon: Target,    accent: '#06b6d4', title: 'Role-Aware Writing',    body: 'The AI understands seniority, industry norms, and inclusive language best practices for every level.' },
   { icon: Clock,     accent: '#10b981', title: 'Save Hours of Work',    body: 'What used to take an hour of back-and-forth with your team now takes 30 seconds from first click to copy.' },
   { icon: Users,     accent: '#f59e0b', title: 'Bias-Reduced Language', body: 'Outputs are reviewed for gendered or exclusionary phrasing so you attract the widest, most qualified pool.' },
@@ -128,7 +128,7 @@ const FEATURES = [
 
 const TESTIMONIALS = [
   { stars: 5, quote: 'We cut our time-to-post from 3 days to under an hour. The output quality is genuinely better than what we were writing manually.', author: 'Sarah K.', role: 'Head of Talent, Fintech startup' },
-  { stars: 5, quote: 'I was skeptical about AI-written JDs but this actually sounds human. We've had zero candidates comment on it feeling generic.', author: 'Marcus T.', role: 'Engineering Manager, SaaS Co.' },
+  { stars: 5, quote: "I was skeptical about AI-written JDs but this actually sounds human. We've had zero candidates comment on it feeling generic.", author: 'Marcus T.', role: 'Engineering Manager, SaaS Co.' },
   { stars: 5, quote: 'The inclusive language defaults alone were worth it. Our diversity metrics improved noticeably within two hiring cycles.', author: 'Priya N.', role: 'HR Director, Healthcare org' },
 ];
 
