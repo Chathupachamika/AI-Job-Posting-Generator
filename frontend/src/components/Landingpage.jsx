@@ -64,7 +64,6 @@ function StatCard({ value, label, icon: Icon }) {
   );
 }
 
-// ── Team data ────────────────────────────────────────────
 const TEAM = [
   {
     name: 'Kusal D Ranasinghe',
@@ -132,7 +131,7 @@ function TeamCard({ name, role, photo, accent, initials, isLead }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Lead crown badge */}
+      { }
       {isLead && (
         <div style={{
           position: 'absolute',
@@ -151,7 +150,7 @@ function TeamCard({ name, role, photo, accent, initials, isLead }) {
         </div>
       )}
 
-      {/* Subtle background glow */}
+      { }
       <div style={{
         position: 'absolute',
         top: '-30px', left: '50%', transform: 'translateX(-50%)',
@@ -162,7 +161,7 @@ function TeamCard({ name, role, photo, accent, initials, isLead }) {
         opacity: hovered ? 1 : 0.5,
       }} />
 
-      {/* Avatar */}
+      { }
       <div style={{
         width: isLead ? '92px' : '80px',
         height: isLead ? '92px' : '80px',
@@ -203,7 +202,7 @@ function TeamCard({ name, role, photo, accent, initials, isLead }) {
         )}
       </div>
 
-      {/* Name & role */}
+      { }
       <div style={{ position: 'relative', zIndex: 1 }}>
         <div style={{
           fontFamily: "'Syne', sans-serif",
@@ -257,24 +256,24 @@ export default function LandingPage({ onOpenForm }) {
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
 
-      {/* ── HERO ──────────────────────────────────────────── */}
+      { }
       <section style={{ position: 'relative', overflow: 'hidden', padding: '80px 24px 0', textAlign: 'center' }}>
 
-        {/* Radial glow */}
+        { }
         <div style={{
           position: 'absolute', top: '-80px', left: '50%', transform: 'translateX(-50%)',
           width: '700px', height: '500px', borderRadius: '50%',
           background: 'radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
-        {/* Grid lines */}
+        { }
         <div style={{
           position: 'absolute', inset: 0,
           backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
           backgroundSize: '60px 60px', pointerEvents: 'none',
         }} />
 
-        {/* Text block */}
+        { }
         <div style={{ position: 'relative', maxWidth: '780px', margin: '0 auto', paddingBottom: '48px' }}>
           <div style={{ marginBottom: '24px' }}>
             <Badge><Sparkles style={{ width: '11px', height: '11px' }} /> AI-Powered • Free to Use</Badge>
@@ -296,7 +295,7 @@ export default function LandingPage({ onOpenForm }) {
             — powered by Llama 3 on Groq.
           </p>
 
-          {/* CTA buttons */}
+          { }
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '40px' }}>
             <button
               onClick={onOpenForm}
@@ -329,7 +328,7 @@ export default function LandingPage({ onOpenForm }) {
             </a>
           </div>
 
-          {/* Perks */}
+          { }
           <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
             {PERKS.map(p => (
               <span key={p} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#4a6080' }}>
@@ -340,7 +339,7 @@ export default function LandingPage({ onOpenForm }) {
           </div>
         </div>
 
-        {/* ── Hero image banner placeholder ─────────────────── */}
+        { }
         <div style={{ position: 'relative', maxWidth: '1000px', margin: '0 auto' }}>
           <div style={{
             position: 'absolute', top: 0, left: 0, right: 0,
@@ -365,7 +364,7 @@ export default function LandingPage({ onOpenForm }) {
         </div>
       </section>
 
-      {/* ── STATS ─────────────────────────────────────────── */}
+      { }
       <section style={{ padding: '0 24px 72px' }}>
         <div style={{ maxWidth: '860px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '14px' }}>
           <StatCard value="10s"  label="Avg. generation time" icon={Zap} />
@@ -375,7 +374,7 @@ export default function LandingPage({ onOpenForm }) {
         </div>
       </section>
 
-      {/* ── HOW IT WORKS ──────────────────────────────────── */}
+      { }
       <section id="how-it-works" style={{ padding: '64px 24px', background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
         <div style={{ maxWidth: '860px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
@@ -408,7 +407,7 @@ export default function LandingPage({ onOpenForm }) {
         </div>
       </section>
 
-      {/* ── FEATURES ──────────────────────────────────────── */}
+      { }
       <section id="features" style={{ padding: '72px 24px' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
@@ -426,11 +425,11 @@ export default function LandingPage({ onOpenForm }) {
         </div>
       </section>
 
-      {/* ── MEET THE TEAM ─────────────────────────────────── */}
+      { }
       <section id="team" style={{ padding: '0 24px 80px' }}>
         <div style={{ maxWidth: '860px', margin: '0 auto' }}>
 
-          {/* Section header */}
+          { }
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
             <Badge>Meet the Team</Badge>
             <h2 style={{
@@ -459,7 +458,7 @@ export default function LandingPage({ onOpenForm }) {
         </div>
       </section>
 
-      {/* ── BOTTOM CTA ────────────────────────────────────── */}
+      { }
       <section style={{ padding: '72px 24px', background: 'rgba(59,130,246,0.04)', borderTop: '1px solid rgba(59,130,246,0.12)', textAlign: 'center' }}>
         <div style={{ maxWidth: '560px', margin: '0 auto' }}>
           <div style={{
