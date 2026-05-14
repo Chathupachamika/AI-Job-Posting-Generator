@@ -446,7 +446,7 @@ export default function LandingPage({ onOpenForm }) {
             </p>
           </div>
 
-          {/* Team grid — lead card full width on mobile, 2-col + lead on desktop */}
+          { }
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
