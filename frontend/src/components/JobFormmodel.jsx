@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { X, Sparkles, Loader2 } from 'lucide-react';
+import { X, Loader2 } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 /**
  * JobFormModal
@@ -69,34 +70,76 @@ export default function JobFormModal({ isOpen, onClose, lockClose = false, child
         {/* ── Sticky modal top-bar ──────────────────────────── */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '18px 22px',
+          padding: '16px 20px',
           borderBottom: '1px solid rgba(255,255,255,0.06)',
           position: 'sticky', top: 0, zIndex: 10,
           background: 'rgba(9,12,16,0.96)',
           backdropFilter: 'blur(16px)',
           borderRadius: '22px 22px 0 0',
         }}>
+
           {/* Logo + title */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '11px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+
+            {/* Logo mark — same style as header */}
             <div style={{
-              width: '34px', height: '34px', borderRadius: '9px',
-              background: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
+              position: 'relative',
+              width: '38px', height: '38px', borderRadius: '10px',
+              background: 'linear-gradient(145deg, #1a1400 0%, #2e2200 100%)',
+              border: '1px solid rgba(201,168,76,0.35)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 0 18px rgba(59,130,246,0.4)', flexShrink: 0,
+              flexShrink: 0,
+              boxShadow: '0 2px 12px rgba(201,168,76,0.18), 0 0 0 1px rgba(201,168,76,0.08)',
+              overflow: 'hidden',
             }}>
-              {lockClose
-                ? <Loader2 style={{ width: '15px', height: '15px', color: '#fff', animation: 'modal-spin 1s linear infinite' }} />
-                : <Sparkles style={{ width: '15px', height: '15px', color: '#fff' }} />
-              }
+              <img
+                src={logo}
+                alt="JobCraft AI"
+                style={{ width: '26px', height: '26px', objectFit: 'contain' }}
+              />
+              {/* Loading spinner ring overlay */}
+              {lockClose && (
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: 'rgba(26,20,0,0.65)',
+                  borderRadius: '10px',
+                }}>
+                  <Loader2 style={{
+                    width: '18px', height: '18px',
+                    color: '#c9a84c',
+                    animation: 'modal-spin 1s linear infinite',
+                  }} />
+                </div>
+              )}
             </div>
+
             <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+                <p style={{
+                  fontFamily: "'DM Serif Display', serif",
+                  fontSize: '15px', fontWeight: 400,
+                  color: '#f0e8d4', lineHeight: 1.2,
+                  letterSpacing: '-0.01em',
+                }}>
+                  {lockClose ? 'Generating your posting…' : 'Create Job Posting'}
+                </p>
+                {!lockClose && (
+                  <span style={{
+                    fontFamily: "'Instrument Sans', 'DM Sans', sans-serif",
+                    fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.1em',
+                    color: '#c9a84c',
+                    background: 'rgba(201,168,76,0.1)',
+                    border: '1px solid rgba(201,168,76,0.28)',
+                    borderRadius: '4px', padding: '1px 5px',
+                    textTransform: 'uppercase', lineHeight: 1.7,
+                  }}>AI</span>
+                )}
+              </div>
               <p style={{
-                fontFamily: "'Syne', sans-serif", fontSize: '14px',
-                fontWeight: 700, color: '#f0f4f8', lineHeight: 1.2,
+                fontFamily: "'Instrument Sans', 'DM Sans', sans-serif",
+                fontSize: '11px', color: '#4a6080', marginTop: '2px', letterSpacing: '0.02em',
               }}>
-                {lockClose ? 'Generating your posting…' : 'Create Job Posting'}
-              </p>
-              <p style={{ fontSize: '11px', color: '#4a6080', marginTop: '1px' }}>
                 Powered by Groq &amp; Llama 3
               </p>
             </div>
