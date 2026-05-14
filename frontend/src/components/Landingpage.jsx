@@ -66,18 +66,18 @@ function StatCard({ value, label, icon: Icon }) {
 
 const TEAM = [
   {
-    name: 'Kusal D Ranasinghe',
+    name: 'Nethmi',
     role: 'Project Lead',
-    photo: '/team/kusal.png',
-    accent: '#c9a84c',
+    photo: '/team/nethmi.png',
+    accent: '#06b6d4',
     initials: 'KR',
     isLead: true,
   },
   {
-    name: 'Nethmi',
+    name: 'Kusal D Ranasinghe',
     role: 'Developer',
-    photo: '/team/nethmi.png',
-    accent: '#06b6d4',
+    photo: '/team/kusal.png',
+    accent: '#c9a84c',
     initials: 'N',
     isLead: false,
   },
