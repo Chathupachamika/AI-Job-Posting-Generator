@@ -8,7 +8,6 @@ CORS(app)
 GROQ_API_KEY = "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"
 client = Groq(api_key=GROQ_API_KEY)
 
-
 @app.route("/api/generate", methods=["POST"])
 def generate():
     data = request.json
