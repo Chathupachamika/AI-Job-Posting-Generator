@@ -10,7 +10,7 @@ export default function Header({ onOpenForm }) {
 
   /* Scroll → shrink header + track active section */
   useEffect(() => {
-    const SECTION_IDS = ['how-it-works', 'features', 'testimonials'];
+    const SECTION_IDS = ['how-it-works', 'features', 'team'];
 
     const onScroll = () => {
       setScrolled(window.scrollY > 18);
@@ -46,9 +46,9 @@ export default function Header({ onOpenForm }) {
   };
 
   const NAV_LINKS = [
-    { label: 'How it works', href: '#how-it-works'  },
-    { label: 'Features',     href: '#features'      },
-    { label: 'Testimonials', href: '#testimonials'  },
+    { label: 'How it works', href: '#how-it-works' },
+    { label: 'Features',     href: '#features'     },
+    { label: 'Meet the Team',href: '#team'          },
   ];
 
   return (

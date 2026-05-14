@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import {
   Sparkles, Zap, Clock, Target, Users, ArrowRight,
-  Star, CheckCircle, Briefcase, Globe, TrendingUp,
+  Star, CheckCircle, Briefcase, Globe, TrendingUp, Crown,
 } from 'lucide-react';
-import heroBanner from '../assets/hero-banner.png'; // ← rename your Gemini image to hero-banner.png in src/assets/
 
 function Badge({ children }) {
   return (
@@ -65,29 +64,170 @@ function StatCard({ value, label, icon: Icon }) {
   );
 }
 
-function Testimonial({ quote, author, role, stars }) {
+// ── Team data ────────────────────────────────────────────
+const TEAM = [
+  {
+    name: 'Kusal D Ranasinghe',
+    role: 'Project Lead',
+    photo: '/team/kusal.png',
+    accent: '#c9a84c',
+    initials: 'KR',
+    isLead: true,
+  },
+  {
+    name: 'Nethmi',
+    role: 'Developer',
+    photo: '/team/nethmi.png',
+    accent: '#06b6d4',
+    initials: 'N',
+    isLead: false,
+  },
+  {
+    name: 'Manusha Vishmika',
+    role: 'Developer',
+    photo: '/team/manusha.png',
+    accent: '#10b981',
+    initials: 'MV',
+    isLead: false,
+  },
+  {
+    name: 'Chathupa Chamika',
+    role: 'Developer',
+    photo: '/team/chathupa.png',
+    accent: '#8b5cf6',
+    initials: 'CC',
+    isLead: false,
+  },
+];
+
+function TeamCard({ name, role, photo, accent, initials, isLead }) {
+  const [imgErr, setImgErr] = useState(false);
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <div style={{
-      padding: '24px', background: '#0f1419',
-      border: '1px solid rgba(255,255,255,0.07)', borderRadius: '16px',
-      display: 'flex', flexDirection: 'column', gap: '16px',
-    }}>
-      <div style={{ display: 'flex', gap: '3px' }}>
-        {Array(stars).fill(0).map((_, i) => (
-          <Star key={i} style={{ width: '13px', height: '13px', color: '#f59e0b', fill: '#f59e0b' }} />
-        ))}
-      </div>
-      <p style={{ fontSize: '13px', color: '#8fa3b8', lineHeight: 1.75, fontStyle: 'italic' }}>"{quote}"</p>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <div
+      style={{
+        padding: '28px 20px 24px',
+        background: isLead
+          ? 'linear-gradient(160deg, #131a10 0%, #0f1419 100%)'
+          : '#0f1419',
+        border: `1px solid ${hovered ? accent + '55' : (isLead ? 'rgba(201,168,76,0.2)' : 'rgba(255,255,255,0.07)')}`,
+        borderRadius: '18px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '16px',
+        textAlign: 'center',
+        transition: 'border-color 0.25s, transform 0.25s, box-shadow 0.25s',
+        transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
+        boxShadow: hovered
+          ? `0 12px 40px ${accent}20`
+          : isLead
+            ? '0 4px 24px rgba(201,168,76,0.08)'
+            : 'none',
+        cursor: 'default',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Lead crown badge */}
+      {isLead && (
         <div style={{
-          width: '34px', height: '34px', borderRadius: '50%',
-          background: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: '13px', fontWeight: 700, color: '#fff', flexShrink: 0,
-        }}>{author[0]}</div>
-        <div>
-          <div style={{ fontSize: '13px', fontWeight: 600, color: '#f0f4f8' }}>{author}</div>
-          <div style={{ fontSize: '11px', color: '#4a6080' }}>{role}</div>
+          position: 'absolute',
+          top: '14px',
+          right: '14px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '4px',
+          padding: '3px 9px',
+          background: 'rgba(201,168,76,0.12)',
+          border: '1px solid rgba(201,168,76,0.3)',
+          borderRadius: '99px',
+        }}>
+          <Crown style={{ width: '10px', height: '10px', color: '#c9a84c' }} />
+          <span style={{ fontSize: '10px', fontWeight: 700, color: '#c9a84c', letterSpacing: '0.08em' }}>LEAD</span>
+        </div>
+      )}
+
+      {/* Subtle background glow */}
+      <div style={{
+        position: 'absolute',
+        top: '-30px', left: '50%', transform: 'translateX(-50%)',
+        width: '120px', height: '120px', borderRadius: '50%',
+        background: `radial-gradient(ellipse, ${accent}18 0%, transparent 70%)`,
+        pointerEvents: 'none',
+        transition: 'opacity 0.3s',
+        opacity: hovered ? 1 : 0.5,
+      }} />
+
+      {/* Avatar */}
+      <div style={{
+        width: isLead ? '92px' : '80px',
+        height: isLead ? '92px' : '80px',
+        borderRadius: '50%',
+        border: `2px solid ${hovered ? accent : accent + '60'}`,
+        overflow: 'hidden',
+        boxShadow: hovered
+          ? `0 0 0 4px ${accent}18, 0 8px 24px ${accent}30`
+          : `0 0 0 3px ${accent}10`,
+        flexShrink: 0,
+        background: `linear-gradient(135deg, ${accent}cc, ${accent}66)`,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        transition: 'border-color 0.25s, box-shadow 0.25s, width 0.2s, height 0.2s',
+        position: 'relative',
+        zIndex: 1,
+      }}>
+        {!imgErr ? (
+          <img
+            src={photo}
+            alt={name}
+            onError={() => setImgErr(true)}
+            style={{
+              width: '100%', height: '100%',
+              objectFit: 'cover', objectPosition: 'center top',
+              display: 'block',
+            }}
+          />
+        ) : (
+          <span style={{
+            fontSize: isLead ? '26px' : '22px',
+            fontWeight: 800,
+            color: '#fff',
+            fontFamily: "'Syne', sans-serif",
+            letterSpacing: '-0.02em',
+          }}>
+            {initials}
+          </span>
+        )}
+      </div>
+
+      {/* Name & role */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <div style={{
+          fontFamily: "'Syne', sans-serif",
+          fontSize: isLead ? '16px' : '14px',
+          fontWeight: 700,
+          color: '#f0f4f8',
+          marginBottom: '8px',
+          letterSpacing: '-0.01em',
+        }}>
+          {name}
+        </div>
+        <div style={{
+          display: 'inline-block',
+          padding: '4px 12px',
+          background: `${accent}15`,
+          border: `1px solid ${accent}35`,
+          borderRadius: '99px',
+          fontSize: '11px',
+          fontWeight: 600,
+          color: accent,
+          letterSpacing: '0.06em',
+          textTransform: 'uppercase',
+        }}>
+          {role}
         </div>
       </div>
     </div>
@@ -101,12 +241,6 @@ const FEATURES = [
   { icon: Users,      accent: '#f59e0b', title: 'Bias-Reduced Language',  body: 'Outputs are reviewed for gendered or exclusionary phrasing so you attract the widest, most qualified pool.' },
   { icon: Globe,      accent: '#8b5cf6', title: 'Any Industry, Any Role', body: 'From healthcare to fintech, junior to C-suite — the model adapts tone, terminology, and structure accordingly.' },
   { icon: TrendingUp, accent: '#ef4444', title: 'Higher Apply Rates',     body: 'Clear structure and compelling copy have been shown to increase qualified application rates by up to 40%.' },
-];
-
-const TESTIMONIALS = [
-  { stars: 5, quote: 'We cut our time-to-post from 3 days to under an hour. The output quality is genuinely better than what we were writing manually.', author: 'Sarah K.',  role: 'Head of Talent, Fintech startup' },
-  { stars: 5, quote: "I was skeptical about AI-written JDs but this actually sounds human. We've had zero candidates comment on it feeling generic.",        author: 'Marcus T.', role: 'Engineering Manager, SaaS Co.' },
-  { stars: 5, quote: 'The inclusive language defaults alone were worth it. Our diversity metrics improved noticeably within two hiring cycles.',             author: 'Priya N.',  role: 'HR Director, Healthcare org' },
 ];
 
 const PERKS = [
@@ -206,25 +340,18 @@ export default function LandingPage({ onOpenForm }) {
           </div>
         </div>
 
-        {/* ── Hero image banner ──────────────────────────────── */}
-        <div style={{
-          position: 'relative',
-          maxWidth: '1000px',
-          margin: '0 auto',
-        }}>
-          {/* Top fade so it blends into the section bg */}
+        {/* ── Hero image banner placeholder ─────────────────── */}
+        <div style={{ position: 'relative', maxWidth: '1000px', margin: '0 auto' }}>
           <div style={{
             position: 'absolute', top: 0, left: 0, right: 0,
             height: '80px', zIndex: 2, pointerEvents: 'none',
             background: 'linear-gradient(to bottom, #090c10 0%, transparent 100%)',
           }} />
-          {/* Bottom fade into next section */}
           <div style={{
             position: 'absolute', bottom: 0, left: 0, right: 0,
             height: '120px', zIndex: 2, pointerEvents: 'none',
             background: 'linear-gradient(to top, #090c10 0%, transparent 100%)',
           }} />
-          {/* Side fades */}
           <div style={{
             position: 'absolute', top: 0, left: 0, bottom: 0,
             width: '80px', zIndex: 2, pointerEvents: 'none',
@@ -235,20 +362,6 @@ export default function LandingPage({ onOpenForm }) {
             width: '80px', zIndex: 2, pointerEvents: 'none',
             background: 'linear-gradient(to left, #090c10 0%, transparent 100%)',
           }} />
-
-          <img
-            src={heroBanner}
-            alt="JobCraft AI — Your career path, crafted with intelligence"
-            style={{
-              width: '100%',
-              height: 'auto',
-              display: 'block',
-              borderRadius: '20px 20px 0 0',
-              opacity: 0.88,
-              maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
-            }}
-          />
         </div>
       </section>
 
@@ -313,17 +426,35 @@ export default function LandingPage({ onOpenForm }) {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ──────────────────────────────────── */}
-      <section id="testimonials" style={{ padding: '0 24px 72px' }}>
+      {/* ── MEET THE TEAM ─────────────────────────────────── */}
+      <section id="team" style={{ padding: '0 24px 80px' }}>
         <div style={{ maxWidth: '860px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <Badge>Testimonials</Badge>
-            <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 800, color: '#f0f4f8', marginTop: '16px', letterSpacing: '-0.02em' }}>
-              Trusted by hiring teams
+
+          {/* Section header */}
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <Badge>Meet the Team</Badge>
+            <h2 style={{
+              fontFamily: "'Syne', sans-serif",
+              fontSize: 'clamp(22px, 4vw, 32px)',
+              fontWeight: 800, color: '#f0f4f8',
+              marginTop: '16px', letterSpacing: '-0.02em',
+            }}>
+              Built by us, for you
             </h2>
+            <p style={{ fontSize: '14px', color: '#6b8299', marginTop: '10px', maxWidth: '420px', margin: '10px auto 0', lineHeight: 1.7 }}>
+              A passionate team of developers who believe hiring should be effortless.
+            </p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px' }}>
-            {TESTIMONIALS.map(t => <Testimonial key={t.author} {...t} />)}
+
+          {/* Team grid — lead card full width on mobile, 2-col + lead on desktop */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+            gap: '14px',
+          }}>
+            {TEAM.map(m => (
+              <TeamCard key={m.name} {...m} />
+            ))}
           </div>
         </div>
       </section>
